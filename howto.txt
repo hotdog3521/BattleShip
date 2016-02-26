@@ -1,0 +1,16 @@
+Instruction:
+
+In order to play the game,
+1) Place ships in player field.
+  - Click one of the spot in the field,
+    then window pops up and you can choose direction and ship.
+2) After place the ship, you need to find the .battle file 
+   that is the coordinate that you have to guess.
+3) After all this steps are done, you can click start button to play game.
+4) You can not click start button when you are not ready to play.
+  - placing all ships in player area and select .battle file.
+5) Click one of the coordinate in computer area then computer will also guess.
+6) All ship are different size and they look like vertical or horizontal line.
+7) After whoever wins, you can play the game again.
+
+Enjoy the battle ship!
