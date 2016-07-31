@@ -62,8 +62,8 @@ public class OceanJLabel extends JLabel {
 	private boolean fireTrigger = false;
 	private boolean something = false;
 	
-	public OceanJLabel(ImageIcon icon1, ImageIcon icon2, ImageIcon ship) {
-		//super(icon1);
+	public OceanJLabel(ImageIcon icon1, ImageIcon icon2, ImageIcon ship) { 
+		
 		this.icon1 = icon1;
 		this.icon2 = icon2;
 		this.ship = ship;
@@ -119,10 +119,6 @@ public class OceanJLabel extends JLabel {
 				}
 			}
 		};
-
-
-		
-
 	changing.start();
 	
 	}
@@ -134,12 +130,10 @@ public class OceanJLabel extends JLabel {
 			}
 		};
 		time.schedule(task, stop);
-		//1000
 	}
 	public void soundSplash(boolean sunkShip) {
 		changeQuestion = true;
-		if(!sunkShip)
-		{
+		if(!sunkShip) {
 			shootingClass sound = new shootingClass("splash.wav", false);	
 			sound.start();
 		}
@@ -149,8 +143,7 @@ public class OceanJLabel extends JLabel {
 		if(sunkShip){
 			delay(4500);
 		}
-		else
-		{
+		else{
 			delay(2000);
 		}
 		
@@ -167,26 +160,20 @@ public class OceanJLabel extends JLabel {
 		
 		changeQuestion = true;
 		shootingClass sound = new shootingClass("explode.wav", true);
-		//shootingClass sound1 = new shootingClass("sinking.wav");
 		imagePause = true;
-		sound.start();
-		//sound1.start();
+		sound.start();]
 		delay(3000);
 	}
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-			if(firstOne == false)
-			{
-				//System.out.println("inside");
+			if(firstOne == false){
 				g.drawImage(icon2.getImage(), 0, 0, null);
 				firstOne = true;
 			}
-			else
-			{
+			else {
 				g.drawImage(icon1.getImage(), 0, 0, null);
 				firstOne = false;
-				//System.out.println("inside2");
 			}
 			super.setOpaque(true);
 			
@@ -194,65 +181,48 @@ public class OceanJLabel extends JLabel {
 				
 				g.drawImage(explosionVersion1[i].getImage(), 10, 10, null);
 				i++;
-				if(i == 7)
-				{
+				if(i == 7) {
 					startBlow = false;
 					fire = false;
 					i = 0;
 					changeQuestion = false;
 					delay = false;
 				}
-				
 			}
 			else if(startBlow && water && delay) {
 
 				g.drawImage(splash[j].getImage(), -10, -10, null);
 				j++;
-				if(j == 7)
-				{
+				if(j == 7) {
 					startBlow = false;
 					water = false;
 					j = 0;
-					//g.drawImage(ship.getImage(), 10, 10, null);
 					changeQuestion = false;
 					delay = false;
 					something = false;
 				}
-				
 			}
-			else if(sameTime&&delay)
-			{
-				if(i != 7)
-				{
+			else if(sameTime&&delay) {
+				if(i != 7) {
 					g.drawImage(explosionVersion1[i].getImage(), 10, 10, null);
 					i++;
 				}
-				else
-				{
+				else {
 					g.drawImage(splash[j].getImage(), -10, -10, null);
-					
 					j++;
-					if(j == 7)
-					{
+					if(j == 7) {
 						j = 0;
 						sameTime = false;
 						changeQuestion = false;
 						delay = false;
 					}
 				}
-
-				
-			}else if(wholeShip)
-			{
+			}else if(wholeShip) {
 				wholeShip = false;
 			}
-			else if(!changeQuestion || something)
-			{
+			else if(!changeQuestion || something) {
 				g.drawImage(ship.getImage(), 10, 10, null);
 			}
-			
-			
-
 		}
 	
 	public void setShip(ImageIcon II) {
@@ -280,14 +250,12 @@ public class OceanJLabel extends JLabel {
 	}
 
 }
-
 	 class shootingClass extends Thread {
 		 
 		private String sound;
 		private boolean turnOn;
 		
 		public shootingClass(String sound, boolean turnOn) {
-			
 			this.sound = sound;
 			this.turnOn = turnOn;
 		}
@@ -303,20 +271,9 @@ public class OceanJLabel extends JLabel {
 				e.printStackTrace();
 			}
 			SoundLibrary.playSound(sound);
-			if(turnOn)
-			{
+			if(turnOn) {
 				SoundLibrary.playSound("sinking.wav");
 			}
-			
-		}
-		
-	}
-	class shootingClass2 extends Thread {
-		private String sound;
-		public shootingClass2(String sound) {
-			this.sound = sound;
-		}
-		public void run() {
 			
 		}
 	}

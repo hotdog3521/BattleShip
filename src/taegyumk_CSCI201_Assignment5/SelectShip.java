@@ -44,15 +44,11 @@ public class SelectShip extends JFrame {
 	private boolean icon = false;
 	public SelectShip(String coordination, Vector<String> shipList) {
 		super("Select ship at"+" "+coordination);
-		
-		//this.shipList = shipList;
-		
-		
+
 		this.coordination = coordination;
 		setLocation(300, 300);
 		setSize(350,150);
 		setLayout(new GridLayout(4,1));
-		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel top = new JPanel(); 
 
@@ -76,8 +72,6 @@ public class SelectShip extends JFrame {
 		bg.add(west);
 		bg.add(east);
 		
-
-
 		selectShip = new JButton("Place Ship");
 		selectShip.setEnabled(false);
 		selectShip.addActionListener(new ActionListener() {
@@ -86,8 +80,6 @@ public class SelectShip extends JFrame {
 
 			}
 		});
-		
-		
 		top.add(shipSelect);
 		top.add(shipTypeSelection);
 		second.add(north);
@@ -120,28 +112,22 @@ public class SelectShip extends JFrame {
 		return selectShip;
 	}
 	public void setShip() {
-		//shipTypeSelection.setSelectedIndex(0);
 		shipTypeSelection.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent ie) {
 				if (ie.getStateChange() == ItemEvent.SELECTED) {
 					chosenShip = (String)ie.getItem();
-					if(chosenShip.equalsIgnoreCase("Select Ship"))
-					{
+					if(chosenShip.equalsIgnoreCase("Select Ship")) {
 						selectShip.setEnabled(false);
 						buttonini2 = false;
 					}
-					else
-					{
+					else {
 						buttonini2 = true;
-						if(buttonini == true)
-						{
+						if(buttonini == true) {
 							selectShip.setEnabled(true);
 						}
-						else
-						{
+						else {
 							selectShip.setEnabled(false);
 						}
-						
 					}
 				}
 			}
@@ -149,12 +135,10 @@ public class SelectShip extends JFrame {
 		north.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent ie) {
 				buttonini = true;
-				if(buttonini2 == true)
-				{
+				if(buttonini2 == true) {
 					selectShip.setEnabled(true);
 				}
-				else
-				{
+				else {
 					selectShip.setEnabled(false);
 				}
 				if(north.isSelected()) {
@@ -166,12 +150,10 @@ public class SelectShip extends JFrame {
 		south.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent ie) {
 				buttonini = true;
-				if(buttonini2 == true)
-				{
+				if(buttonini2 == true) {
 					selectShip.setEnabled(true);
 				}
-				else
-				{
+				else {
 					selectShip.setEnabled(false);
 				}
 				if(south.isSelected()) {
@@ -183,12 +165,10 @@ public class SelectShip extends JFrame {
 		west.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent ie) {
 				buttonini = true;
-				if(buttonini2 == true)
-				{
+				if(buttonini2 == true) {
 					selectShip.setEnabled(true);
 				}
-				else
-				{
+				else {
 					selectShip.setEnabled(false);
 				}
 				if(west.isSelected()) {
@@ -200,12 +180,10 @@ public class SelectShip extends JFrame {
 		east.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent ie) {
 				buttonini = true;
-				if(buttonini2 == true)
-				{
+				if(buttonini2 == true) {
 					selectShip.setEnabled(true);
 				}
-				else
-				{
+				else {
 					selectShip.setEnabled(false);
 				}
 				if(east.isSelected()) {
@@ -214,20 +192,16 @@ public class SelectShip extends JFrame {
 				}
 			}
 		});
-		//shipTypeSelection.setSelectedIndex(0);
-		
 	}
 	public String getchosenShip() {
 		return chosenShip;
 	}
-	public char getShipDirection()
-	{
+	public char getShipDirection() {
 		return shipDirection;
 	}
 	public String getCoordination() {
 		return coordination;
 	}
-
 	public JComboBox<String> getShipTypeSelection() {
 		return shipTypeSelection;
 	}
