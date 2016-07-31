@@ -152,9 +152,7 @@ public class BattleShip extends JFrame{
 	private static IpMenu im;
 	private static String ip;
 	private static BattleShip BS;
-	
 	private static JPanel panel5;
-	
 	private static JCheckBox chatFilter;
 	private static JCheckBox eventFilter;
 	
@@ -168,7 +166,6 @@ public class BattleShip extends JFrame{
 	
 	private static boolean isHost = false;
 	private static boolean isClient = false;
-	
 
 	private static Vector<String> holdingData;
 	private static Client client;
@@ -254,13 +251,11 @@ public class BattleShip extends JFrame{
 		for(int i = 0; i < 11; i++) {
 			Field.add(coordinate[i][0]);
 			for(int j = 0; j < 10; j++) {
-				if(i == 10)
-				{
+				if(i == 10) {
 					coordinate[10][j] = new JLabel("   "+String.valueOf(j+1));
 					Field.add(coordinate[10][j]);
 				}
-				else
-				{
+				else {
 					OJ[i][j] = new OceanJLabel(ocean1,ocean2,question);
 					OJ[i][j].setBorder(BorderFactory.createLineBorder(Color.blue));
 					Field.add(OJ[i][j]);
@@ -289,15 +284,12 @@ public class BattleShip extends JFrame{
 		
 		for(int i = 0; i < 11; i++) {
 			FieldC.add(coordinateC[i][0]);
-			
 			for(int j = 0; j < 10; j++) {
-				if(i == 10)
-				{
+				if(i == 10) {
 					coordinateC[10][j] = new JLabel("   "+String.valueOf(j+1));
 					FieldC.add(coordinateC[10][j]);
 				}
-				else
-				{
+				else {
 					OJ2[i][j] = new OceanJLabel(ocean1,ocean2,question);
 					FieldC.add(OJ2[i][j]);	
 					OJ2[i][j].setBorder(BorderFactory.createLineBorder(Color.red));
@@ -326,7 +318,6 @@ public class BattleShip extends JFrame{
 		JPanel panel3 = new JPanel();
 
 		//first line
-		
 		playerLabel = new JLabel(currentPlayer);
 		computerLabel = new JLabel(otherPlayer);
 		timeRemain = new JLabel("Time - 0:"+second);
@@ -354,15 +345,11 @@ public class BattleShip extends JFrame{
 		//when user clicks file button
 		selectFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
-				
-				
 		        JFileChooser fileChooser = new JFileChooser();
 		        fileChooser.setCurrentDirectory(new File("scr/"));
-		        FileNameExtensionFilter filter = new FileNameExtensionFilter("battle FILES", "battle", "battle");
-		        
+		        FileNameExtensionFilter filter = new FileNameExtensionFilter("battle FILES", "battle", "battle");      
 		        fileChooser.setFileFilter(filter);
-		        
-		        
+		  
 		        int returnValue = fileChooser.showOpenDialog(null);
 		        if (returnValue == JFileChooser.APPROVE_OPTION) {
 		          File selectedFile = fileChooser.getSelectedFile();
@@ -371,8 +358,7 @@ public class BattleShip extends JFrame{
 				  String temp0 = st.nextToken(".");
 		          chosenFile.setText("File: "+temp0);
 		          filechooserCheck = true;
-		          if(shipList.size() == 1)
-		          {
+		          if(shipList.size() == 1)  {
 		        	  gameStart.setEnabled(true);  
 		          }
 		          
@@ -387,40 +373,28 @@ public class BattleShip extends JFrame{
 				String represent = getAlphabet(i,j);
 	        	int x = i+1;
 	        	int y = j+1;
-	        	if(!starter)
-	        	{
-	        		//coordinate[i][j].addMouseListener(new MouseAdapter() {
+	        	if(!starter) {
 					OJ[i][j].addMouseListener(new MouseAdapter() {  
 					    public void mouseClicked(MouseEvent e)  
 					    {  
 					    	if(coordi[x-1][y-1] == 'X')
 					    	{//place component's ship
-
 					    		openUpSelection(represent, x, y);
-					    		
-
-					    		if(shipList.size() == 1)
-					    		{
+					    		if(shipList.size() == 1) {
 					    			gameStart.setEnabled(true);
 					    		}
-					    		else
-					    		{
+					    		else {
 					    			gameStart.setEnabled(false);
 					    		}
 					    	}
-					    	else
-					    	{
-					    		if(!starter)
-					    		{
+					    	else {
+					    		if(!starter) {
 					    			reset(x, y);
 					    		}
-					    		
 					    	}
-
 					    }  
 					}); 
 	        	}
-
 			}	
 		}
 
@@ -430,16 +404,10 @@ public class BattleShip extends JFrame{
 				String represent = getAlphabet(i,j);
 				int x = i+1;
 				int y = j+1;
-					//coordinateC[i][j].addMouseListener(new MouseAdapter() { 
 						OJ2[i][j].addMouseListener(new MouseAdapter() { 
-					    public void mouseClicked(MouseEvent e)  
-					    {  
-					    	//TODO: call function to update JLabel
-					    	
-					    	if(starter && !playerFinish)
-					    	{
-					    		if(playerSaver[x-1][y-1] == false)
-					    		{
+					    public void mouseClicked(MouseEvent e)   {
+					    	if(starter && !playerFinish) {
+					    		if(playerSaver[x-1][y-1] == false) {
 					    	    	playGameUser(x,y);
 					    	    	String ix = String.valueOf(x);
 					    	    	String iy = String.valueOf(y);
@@ -461,12 +429,9 @@ public class BattleShip extends JFrame{
 					}); 
 			}	
 		}
-		
-
 		JPanel rightSection = new JPanel();
 		JPanel leftSection = new JPanel();
 	
-		//rightSection.add(selectFile);
 		rightSection.add(chosenFile);
 		rightSection.add(gameStart);
 		
@@ -476,7 +441,6 @@ public class BattleShip extends JFrame{
 		panel3.add(rightSection);
 		
 		panel3.setLayout(new GridLayout(1,1));
-		
 		panel1.setLayout(new GridLayout(1,1));
 		panel1.add(Field);
 		panel1.add(FieldC);
@@ -528,9 +492,7 @@ public class BattleShip extends JFrame{
 		add(panel2, BorderLayout.NORTH);
 		add(panel3, BorderLayout.SOUTH);
 		
-		
 		//starting log!!!!!!
-		
 		JPanel panel4 = new JPanel();
 		gameLog = new JTextArea();
 		JScrollPane JP = new JScrollPane(gameLog);
@@ -539,7 +501,6 @@ public class BattleShip extends JFrame{
 		logHolder.add(JP);
 
 		//check boxes
-		
 		panel5 = new JPanel();
 		panel5.setLayout(new GridLayout(3,1));
 		JLabel filter = new JLabel("Filter:");
@@ -550,7 +511,6 @@ public class BattleShip extends JFrame{
 		panel5.add(eventFilter);
 		
 		//chatting!!
-		
 		panel6 = new JPanel();
 		chatPlayer = new JLabel("player1");
 		chattingText = new JTextField();
@@ -591,9 +551,7 @@ public class BattleShip extends JFrame{
 				System.out.println(sendChat);
 				chattingText.setText("");
 			}
-		});
-		
-		
+		}); 
 		panel4.setLayout(new BorderLayout());
 		panel4.add(panel3, BorderLayout.NORTH);
 		panel4.add(JP, BorderLayout.CENTER);
@@ -603,8 +561,6 @@ public class BattleShip extends JFrame{
 
 		chatFilter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
-				
-				
 				if(eventFilter.isSelected() && chatFilter.isSelected()) {
 					gameLog.setText(bothRecord);
 				}else if (chatFilter.isSelected() && !eventFilter.isSelected()) {
@@ -614,14 +570,11 @@ public class BattleShip extends JFrame{
 				}else if (!chatFilter.isSelected() && !eventFilter.isSelected()) {
 					gameLog.setText(nothingRecord);
 				}
-					
-
 			}
 		});
 		
 		eventFilter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
-				
 				
 				if(eventFilter.isSelected() && chatFilter.isSelected()) {
 					gameLog.setText(bothRecord);
@@ -657,9 +610,7 @@ public class BattleShip extends JFrame{
 			public void run() {
 				while(true) {
 					System.out.println("S");
-					if(pReady.equals("B") && oReady.equals("B"))
-					{
-						
+					if(pReady.equals("B") && oReady.equals("B")) {	
 						timeStart();
 						break;
 					}
@@ -695,12 +646,10 @@ public class BattleShip extends JFrame{
 		setVisible(false);
 	}
 	public void reset(int x, int y) {
-		if(coordi[x-1][y-1] == 'A')
-		{
+		if(coordi[x-1][y-1] == 'A') {
 			for(int i = 0; i < 10; i++) {
 				for(int j = 0; j < 10; j++) {
-					if(coordi[i][j] == 'A')
-					{
+					if(coordi[i][j] == 'A') {
 						coordi[i][j] = 'X';
 						((OceanJLabel) OJ[i][j]).setShip(question);
 						//coordinate[i][j].setIcon(question);
@@ -713,74 +662,60 @@ public class BattleShip extends JFrame{
 		{
 			for(int i = 0; i < 10; i++) {
 				for(int j = 0; j < 10; j++) {
-					if(coordi[i][j] == 'B')
-					{
+					if(coordi[i][j] == 'B') {
 						coordi[i][j] = 'X';
 						((OceanJLabel) OJ[i][j]).setShip(question);
-						//coordinate[i][j].setIcon(question);
 					}
 				}
 			}
 			shipAdd("Battleship");
 		}
-		else if(coordi[x-1][y-1] == 'C')
-		{
+		else if(coordi[x-1][y-1] == 'C') {
 			for(int i = 0; i < 10; i++) {
 				for(int j = 0; j < 10; j++) {
-					if(coordi[i][j] == 'C')
-					{
+					if(coordi[i][j] == 'C') {
 						coordi[i][j] = 'X';
 						((OceanJLabel) OJ[i][j]).setShip(question);
-						//coordinate[i][j].setIcon(question);
 					}
 				}
 			}
 			shipAdd("Cruiser");
 		}
-		else if(coordi[x-1][y-1] == 'D')
-		{
+		else if(coordi[x-1][y-1] == 'D') {
 			for(int i = 0; i < 10; i++) {
 				for(int j = 0; j < 10; j++) {
-					if(coordi[i][j] == 'D')
-					{
+					if(coordi[i][j] == 'D') {
 						coordi[i][j] = 'X';
 						((OceanJLabel) OJ[i][j]).setShip(question);
 						//coordinate[i][j].setIcon(question);
 					}
 				}
 			}
-			if(destroyCounter==0)
-			{
+			if(destroyCounter==0) {
 				shipAdd("Destroyer");
 			}
 			destroyCounter++;
 			destroyerD = false;
 		}
-		else if(coordi[x-1][y-1] == 'E')
-		{
+		else if(coordi[x-1][y-1] == 'E') {
 			for(int i = 0; i < 10; i++) {
 				for(int j = 0; j < 10; j++) {
-					if(coordi[i][j] == 'E')
-					{
+					if(coordi[i][j] == 'E') {
 						coordi[i][j] = 'X';
 						((OceanJLabel) OJ[i][j]).setShip(question);
 						coordinate[i][j].setIcon(question);
 					}
 				}
 			}
-			if(destroyCounter==0)
-			{
+			if(destroyCounter==0) {
 				shipAdd("Destroyer");
 			}
 			destroyCounter++;
 		}
-		//if(filechooserCheck == true && shipList.size() == 1)
-		if(shipList.size() == 1)
-		{
+		if(shipList.size() == 1) {
 			gameStart.setEnabled(true);
 		}
-		else
-		{
+		else {
 			gameStart.setEnabled(false);
 		}
 	}
@@ -796,7 +731,6 @@ public class BattleShip extends JFrame{
     				ss.setShip();
     				ss.setVisible(false);
     				//saving ship location in 2d char array and boolean!
-
 					String ship = ss.getchosenShip();
 					char direction = ss.getShipDirection();
 					String sendingDirection = String.valueOf(direction);
@@ -814,28 +748,21 @@ public class BattleShip extends JFrame{
 						}
 					}
 					placeShip(ship, direction, x, y);
-		    		if(shipList.size() == 1)
-		    		{
+		    		if(shipList.size() == 1) {
 		    			gameStart.setEnabled(true);
 		    		}
-		    		else
-		    		{
+		    		else {
 		    			gameStart.setEnabled(false);
 		    		}
-
     			}
     		});
     	}
 	}
 	public static void playGameUser(int x, int y) {
-//TODO
+		
 		String represent = getAlphabet(x-1,y-1); //holding coordinate
-		if(coordiC[x-1][y-1] == 'X')
-		{
-			if(playerSaver[x-1][y-1] == false)
-			{
-				//coordinateC[x-1][y-1].setIcon(miss);
-				
+		if(coordiC[x-1][y-1] == 'X') {
+			if(playerSaver[x-1][y-1] == false) {
 				((OceanJLabel) OJ2[x-1][y-1]).missShip(miss);
 				((OceanJLabel) OJ2[x-1][y-1]).soundSplash(false);
 				playerSaver[x-1][y-1] = true;
@@ -844,31 +771,22 @@ public class BattleShip extends JFrame{
 				gameLog.setText(gameRecord);
 				Document d = gameLog.getDocument();
 				gameLog.select(d.getLength(), d.getLength());
-				
 			}
 		}
-		else if(coordiC[x-1][y-1] == 'A')
-		{
-			if(playerSaver[x-1][y-1] == false)
-			{
-				
-				//coordinateC[x-1][y-1].setIcon(A);
+		else if(coordiC[x-1][y-1] == 'A') {
+			if(playerSaver[x-1][y-1] == false) {
 				Countaircraft--;
 				playerSaver[x-1][y-1] = true;
 				
-				if(Countaircraft == 0)
-				{
+				if(Countaircraft == 0) {
 					((OceanJLabel) OJ2[x-1][y-1]).sameTime(A);
 					((OceanJLabel) OJ2[x-1][y-1]).soundSinking();
 					for(int i = 0; i < 10; i++) {
 						for(int j = 0; j < 10; j++) {
 							if(coordiC[i][j] == 'A') {
-								if( !((x-1)==i && (y-1)==j) )
-								{
-								((OceanJLabel) OJ2[i][j]).sinkingShip(A);
-								//((OceanJLabel) OJ2[i][j]).sameTime(A);
+								if( !((x-1)==i && (y-1)==j) ) {
+								((OceanJLabel) OJ2[i][j]).sinkingShip(A)
 								((OceanJLabel) OJ2[i][j]).soundSplash(true);
-								//System.out.println(i+" "+j);
 								}
 							}
 						}
@@ -880,8 +798,7 @@ public class BattleShip extends JFrame{
 					Document d1 = gameLog.getDocument();
 					gameLog.select(d1.getLength(), d1.getLength());
 				}
-				else
-				{
+				else {
 					((OceanJLabel) OJ2[x-1][y-1]).soundExplosion();
 					((OceanJLabel) OJ2[x-1][y-1]).setBlowShip(A);
 					
@@ -891,24 +808,19 @@ public class BattleShip extends JFrame{
 					Document d1 = gameLog.getDocument();
 					gameLog.select(d1.getLength(), d1.getLength());
 				}
-			}
-			
+			}	
 		}
-		else if(coordiC[x-1][y-1] == 'B')
-		{
-			if(playerSaver[x-1][y-1] == false)
-			{
+		else if(coordiC[x-1][y-1] == 'B') {
+			if(playerSaver[x-1][y-1] == false) {
 				Countbattlship--;
 				playerSaver[x-1][y-1] = true;
-				if(Countbattlship == 0)
-				{
+				if(Countbattlship == 0) {
 					((OceanJLabel) OJ2[x-1][y-1]).sameTime(B);
 					((OceanJLabel) OJ2[x-1][y-1]).soundSinking();
 					for(int i = 0; i < 10; i++) {
 						for(int j = 0; j < 10; j++) {
 							if(coordiC[i][j] == 'B') {
-								if( !((x-1)==i && (y-1)==j) )
-								{
+								if( !((x-1)==i && (y-1)==j) ) {
 									((OceanJLabel) OJ2[i][j]).sinkingShip(B);
 									((OceanJLabel) OJ2[i][j]).soundSplash(true);
 								}
@@ -922,11 +834,9 @@ public class BattleShip extends JFrame{
 					Document d1 = gameLog.getDocument();
 					gameLog.select(d1.getLength(), d1.getLength());
 				}
-				else
-				{
+				else {
 					((OceanJLabel) OJ2[x-1][y-1]).setBlowShip(B);
 					((OceanJLabel) OJ2[x-1][y-1]).soundExplosion();
-					
 					
 					gameRecord = gameRecord +"\n"+ currentPlayer + " hit " + represent + " and hit battleship " + "(0:" +second +")";
 					bothRecord = bothRecord + "\n" + gameRecord;
@@ -935,23 +845,18 @@ public class BattleShip extends JFrame{
 					gameLog.select(d.getLength(), d.getLength());
 				}
 			}
-
 		}
-		else if(coordiC[x-1][y-1] == 'C')
-		{
-			if(playerSaver[x-1][y-1] == false)
-			{
+		else if(coordiC[x-1][y-1] == 'C') {
+			if(playerSaver[x-1][y-1] == false) {
 				Countcruiser--;
 				playerSaver[x-1][y-1] = true;
-				if(Countcruiser == 0)
-				{
+				if(Countcruiser == 0) {
 					((OceanJLabel) OJ2[x-1][y-1]).sameTime(C);
 					((OceanJLabel) OJ2[x-1][y-1]).soundSinking();
 					for(int i = 0; i < 10; i++) {
 						for(int j = 0; j < 10; j++) {
 							if(coordiC[i][j] == 'C') {
-								if( !((x-1)==i && (y-1)==j) )
-								{
+								if( !((x-1)==i && (y-1)==j) ) {
 									((OceanJLabel) OJ2[i][j]).sinkingShip(C);
 									((OceanJLabel) OJ2[i][j]).soundSplash(true);
 								}
@@ -965,12 +870,9 @@ public class BattleShip extends JFrame{
 					Document d1 = gameLog.getDocument();
 					gameLog.select(d1.getLength(), d1.getLength());
 				}
-				else
-				{
-					//coordinateC[x-1][y-1].setIcon(C);
+				else {
 					((OceanJLabel) OJ2[x-1][y-1]).setBlowShip(C);
 					((OceanJLabel) OJ2[x-1][y-1]).soundExplosion();
-					
 					
 					gameRecord = gameRecord +"\n"+ currentPlayer + " hit " + represent + " and cruiser " + "(0:" +second +")";
 					bothRecord = bothRecord + "\n" + gameRecord;
@@ -980,21 +882,17 @@ public class BattleShip extends JFrame{
 				}
 			}
 		}
-		else if(coordiC[x-1][y-1] == 'D')
-		{
-			if(playerSaver[x-1][y-1] == false)
-			{
+		else if(coordiC[x-1][y-1] == 'D') {
+			if(playerSaver[x-1][y-1] == false) {
 				Countdestroyer--;
 				playerSaver[x-1][y-1] = true;
-				if(Countdestroyer == 0)
-				{
+				if(Countdestroyer == 0) {
 					((OceanJLabel) OJ2[x-1][y-1]).sameTime(D);
 					((OceanJLabel) OJ2[x-1][y-1]).soundSinking();
 					for(int i = 0; i < 10; i++) {
 						for(int j = 0; j < 10; j++) {
 							if(coordiC[i][j] == 'D') {
-								if( !((x-1)==i && (y-1)==j) )
-								{
+								if( !((x-1)==i && (y-1)==j) ) {
 									((OceanJLabel) OJ2[i][j]).sinkingShip(D);
 									((OceanJLabel) OJ2[i][j]).soundSplash(true);
 								}
@@ -1008,12 +906,9 @@ public class BattleShip extends JFrame{
 					Document d1 = gameLog.getDocument();
 					gameLog.select(d1.getLength(), d1.getLength());
 				}
-				else
-				{
-					//coordinateC[x-1][y-1].setIcon(D);
+				else {
 					((OceanJLabel) OJ2[x-1][y-1]).setBlowShip(D);
 					((OceanJLabel) OJ2[x-1][y-1]).soundExplosion();
-					
 					
 					gameRecord = gameRecord + "\n"+ currentPlayer + " hit "  + represent + " and hit destroyer " + "(0:" +second +")";
 					bothRecord = bothRecord + "\n" + gameRecord;
@@ -1023,14 +918,11 @@ public class BattleShip extends JFrame{
 				}
 			}
 		}
-		else if(coordiC[x-1][y-1] == 'E')
-		{
-			if(playerSaver[x-1][y-1] == false)
-			{
+		else if(coordiC[x-1][y-1] == 'E') {
+			if(playerSaver[x-1][y-1] == false) {
 				Countdestroyer1--;
 				playerSaver[x-1][y-1] = true;
-				if(Countdestroyer1 == 0)
-				{
+				if(Countdestroyer1 == 0) {
 					((OceanJLabel) OJ2[x-1][y-1]).sameTime(D);
 					((OceanJLabel) OJ2[x-1][y-1]).soundSinking();
 					for(int i = 0; i < 10; i++) {
@@ -1051,13 +943,9 @@ public class BattleShip extends JFrame{
 					Document d1 = gameLog.getDocument();
 					gameLog.select(d1.getLength(), d1.getLength());
 				}
-				else
-				{
-					//coordinateC[x-1][y-1].setIcon(D);
+				else {
 					((OceanJLabel) OJ2[x-1][y-1]).setBlowShip(D);
 					((OceanJLabel) OJ2[x-1][y-1]).soundExplosion();
-					
-					
 					gameRecord = gameRecord +"\n" + currentPlayer + " hit " + represent + " and destroyer " + "(0:" +second +")";
 					bothRecord = bothRecord + "\n" + gameRecord;
 					gameLog.setText(gameRecord);
@@ -1066,24 +954,19 @@ public class BattleShip extends JFrame{
 				}
 			}
 		}
-		else
-		{
-		
+		else {
+			System.out.println("Wrong type of ship")
 		}
 		if(Countaircraft==0&&Countbattlship==0&&Countcruiser==0&&Countdestroyer==0&&Countdestroyer1==0){	
-	
 			Thread th = new Thread() {
 				public void run() {
 					try {
-						//countStop = true;
 						time.cancel();
 						sleep(8000);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					//////////////
-					
 					GameOver go = new GameOver(currentPlayer+" Won!"+ "Play Again?");
 					go.setVisible(true);
 					go.getOK().addActionListener(new ActionListener() {
@@ -1096,7 +979,6 @@ public class BattleShip extends JFrame{
 							miss = new ImageIcon("no.png");
 							hit = new ImageIcon("fire.png");
 							question  = new ImageIcon("question.png");
-							//question.setImage("asd.sd");
 							starter = false;
 							Scanner input = new Scanner(System.in);
 
@@ -1126,11 +1008,7 @@ public class BattleShip extends JFrame{
 							
 							BattleShip BS = new BattleShip();
 							
-							
 							BS.setVisible(true);
-							//System.exit(0);
-							
-
 						}
 					});
 					go.getNO().addActionListener(new ActionListener() {
@@ -1143,7 +1021,6 @@ public class BattleShip extends JFrame{
 							miss = new ImageIcon("no.png");
 							hit = new ImageIcon("fire.png");
 							question  = new ImageIcon("question.png");
-							//question.setImage("asd.sd");
 							starter = false;
 							Scanner input = new Scanner(System.in);
 
@@ -1172,8 +1049,7 @@ public class BattleShip extends JFrame{
 							BS.setVisible(false);
 							
 							BattleShip BS = new BattleShip();
-							
-							
+					
 							BufferedReader in;
 							try {
 								URL toCheckIp = new URL("http://checkip.amazonaws.com");
@@ -1181,36 +1057,18 @@ public class BattleShip extends JFrame{
 								ip = in.readLine();
 							} catch (UnknownHostException  es) {
 								ip = "Error";
-							
 							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								
+								// TODO Auto-generated catch block	
 								e.printStackTrace();
 							}
-							
-							
 							IpMenu im = new IpMenu(BS,ip);
-							
-							//bs.setVisible(true);
-							//System.exit(0);
-							
-
 						}
 					});
-					
 				}
-			};
-			
-			
-			
+			};	
 			th.start();	
 		}
-		
 		playerFinish = true;
-		
-		
-
-		
 	}
 	public static void computerPlay() {
 
@@ -1220,47 +1078,32 @@ public class BattleShip extends JFrame{
 	    
 	    String computerUpdate = " ";
 	    turnCount++;
-	    //System.out.println(turnCount);
-
-		//gameRecord = gameRecord +"\n"+ "player sunk computer's destroyer";
-		//gameLog.setText(gameRecord);
-
-	    while(true)
-	    {
+	    
+	    while(true) {
 		    x = rg.nextInt(10);
 		    y = rg.nextInt(10);
-		    
-		    if(computerSaver[x][y] == false)
-		    {
+		    if(computerSaver[x][y] == false) {
 		    	computerUpdate = getAlphabet(x,y);
 		    	 break;
 		    }
 	    }
 
-		if(coordi[x][y] == 'X')
-		{
-			if(computerSaver[x][y] == false)
-			{
-				//coordinate[x][y].setIcon(miss);
+		if(coordi[x][y] == 'X') {
+			if(computerSaver[x][y] == false) {
 				((OceanJLabel) OJ[x][y]).missShip(miss);
 				((OceanJLabel) OJ[x][y]).soundSplash(false);
 				computerSaver[x][y] = true;
-				//logLabel.setText("log: "+"Player: "+" "+update+" "+"Computer: "+" "+computerUpdate);
 				gameRecord = gameRecord +"\n" + "computer hit " + computerUpdate + " and missed " + "(0:" +second +")";
 				gameLog.setText(gameRecord);
 				Document d = gameLog.getDocument();
 				gameLog.select(d.getLength(), d.getLength());
 			}
-			
 		}
-		else if(coordi[x][y] == 'A')
-		{
-			if(computerSaver[x][y] == false)
-			{
+		else if(coordi[x][y] == 'A') {
+			if(computerSaver[x][y] == false) {
 				CountaircraftC--;
 				computerSaver[x][y] = true;
-				if(CountaircraftC == 0)
-				{
+				if(CountaircraftC == 0) {
 					
 					((OceanJLabel) OJ[x-1][y-1]).sameTime(hit);
 					((OceanJLabel) OJ[x-1][y-1]).soundSinking();
@@ -1281,14 +1124,10 @@ public class BattleShip extends JFrame{
 					Document d1 = gameLog.getDocument();
 					gameLog.select(d1.getLength(), d1.getLength());
 				}
-				else
-				{
-					//coordinate[x][y].setIcon(hit);
+				else {
 					((OceanJLabel) OJ[x][y]).setBlowShip(hit);
 					((OceanJLabel) OJ[x][y]).soundExplosion();
 					
-					
-					//logLabel.setText("log: "+"Player: "+" "+update+" "+"Computer: "+" "+computerUpdate);
 					gameRecord = gameRecord +"\n" + "computer hit " + computerUpdate + " and hit aircraft " + "(0:" +second +")";
 					gameLog.setText(gameRecord);
 					Document d = gameLog.getDocument();
@@ -1297,15 +1136,11 @@ public class BattleShip extends JFrame{
 			}
 			
 		}
-		else if(coordi[x][y] == 'B')
-		{
-			if(computerSaver[x][y] == false)
-			{
-				//coordinate[x][y].setIcon(hit);
+		else if(coordi[x][y] == 'B') {
+			if(computerSaver[x][y] == false) {
 				CountbattlshipC--;
 				computerSaver[x][y] = true;
-				if(CountbattlshipC == 0)
-				{
+				if(CountbattlshipC == 0) {
 					((OceanJLabel) OJ[x-1][y-1]).sameTime(hit);
 					((OceanJLabel) OJ[x-1][y-1]).soundSinking();
 					for(int i = 0; i < 10; i++) {
@@ -1325,36 +1160,28 @@ public class BattleShip extends JFrame{
 					Document d1 = gameLog.getDocument();
 					gameLog.select(d1.getLength(), d1.getLength());
 				}
-				else
-				{
+				else {
 					((OceanJLabel) OJ[x][y]).setBlowShip(hit);
 					((OceanJLabel) OJ[x][y]).soundExplosion();
 					
-					//logLabel.setText("log: "+"Player: "+" "+update+" "+"Computer: "+" "+computerUpdate);
 					gameRecord = gameRecord +"\n" + "computer hit " + computerUpdate + " and hit battleship " + "(0:" +second +")";
 					gameLog.setText(gameRecord);
 					Document d = gameLog.getDocument();
 					gameLog.select(d.getLength(), d.getLength());
 				}
 			}
-
 		}
-		else if(coordi[x][y] == 'C')
-		{
-			if(computerSaver[x][y] == false)
-			{
-				//coordinate[x][y].setIcon(hit);
+		else if(coordi[x][y] == 'C') {
+			if(computerSaver[x][y] == false) {
 				CountcruiserC--;
 				computerSaver[x][y] = true;
-				if(CountcruiserC == 0)
-				{
+				if(CountcruiserC == 0) {
 					((OceanJLabel) OJ[x-1][y-1]).sameTime(hit);
 					((OceanJLabel) OJ[x-1][y-1]).soundSinking();
 					for(int i = 0; i < 10; i++) {
 						for(int j = 0; j < 10; j++) {
 							if(coordi[i][j] == 'C') {
-								if( !((x-1)==i && (y-1)==j) )
-								{
+								if( !((x-1)==i && (y-1)==j) ) {
 									((OceanJLabel) OJ[i][j]).sinkingShip(hit);
 									((OceanJLabel) OJ[i][j]).soundSplash(true);
 								}
@@ -1367,29 +1194,22 @@ public class BattleShip extends JFrame{
 					Document d1 = gameLog.getDocument();
 					gameLog.select(d1.getLength(), d1.getLength());
 				}
-				else
-				{
+				else {
 					((OceanJLabel) OJ[x][y]).setBlowShip(hit);
 					((OceanJLabel) OJ[x][y]).soundExplosion();
 					
-					//logLabel.setText("log: "+"Player: "+" "+update+" "+"Computer: "+" "+computerUpdate);
 					gameRecord = gameRecord +"\n" + "computer hit " + computerUpdate + " and hit cruiser " + "(0:" +second +")";
 					gameLog.setText(gameRecord);
 					Document d = gameLog.getDocument();
 					gameLog.select(d.getLength(), d.getLength());
 				}
 			}
-			
 		}
-		else if(coordi[x][y] == 'D')
-		{
-			if(computerSaver[x][y] == false)
-			{
-				//coordinate[x][y].setIcon(hit);
+		else if(coordi[x][y] == 'D') {
+			if(computerSaver[x][y] == false) {
 				CountdestroyerC--;
 				computerSaver[x][y] = true;
-				if(CountdestroyerC == 0)
-				{
+				if(CountdestroyerC == 0) {
 					((OceanJLabel) OJ[x-1][y-1]).sameTime(hit);
 					((OceanJLabel) OJ[x-1][y-1]).soundSinking();
 					for(int i = 0; i < 10; i++) {
@@ -1409,36 +1229,28 @@ public class BattleShip extends JFrame{
 					Document d1 = gameLog.getDocument();
 					gameLog.select(d1.getLength(), d1.getLength());
 				}
-				else
-				{
+				else {
 					((OceanJLabel) OJ[x][y]).setBlowShip(hit);
 					((OceanJLabel) OJ[x][y]).soundExplosion();
 					
-					//logLabel.setText("log: "+"Player: "+" "+update+" "+"Computer: "+" "+computerUpdate);
 					gameRecord = gameRecord +"\n" + "computer hit "+ computerUpdate + " and hit destroyer " + "(0:" +second +")";
 					gameLog.setText(gameRecord);
 					Document d = gameLog.getDocument();
 					gameLog.select(d.getLength(), d.getLength());
 				}
 			}
-
 		}
-		else if(coordi[x][y] == 'E')
-		{
-			if(computerSaver[x][y] == false)
-			{
-				//coordinate[x][y].setIcon(hit);
+		else if(coordi[x][y] == 'E') {
+			if(computerSaver[x][y] == false) {
 				CountdestroyerC1--;
 				computerSaver[x][y] = true;
-				if(CountdestroyerC1 == 0)
-				{
+				if(CountdestroyerC1 == 0) {
 					((OceanJLabel) OJ[x-1][y-1]).sameTime(hit);
 					((OceanJLabel) OJ[x-1][y-1]).soundSinking();
 					for(int i = 0; i < 10; i++) {
 						for(int j = 0; j < 10; j++) {
 							if(coordi[i][j] == 'D') {
-								if( !((x-1)==i && (y-1)==j) )
-								{
+								if( !((x-1)==i && (y-1)==j) ) {
 									((OceanJLabel) OJ[i][j]).sinkingShip(hit);
 									((OceanJLabel) OJ[i][j]).soundSplash(true);
 								}
@@ -1451,12 +1263,10 @@ public class BattleShip extends JFrame{
 					Document d1 = gameLog.getDocument();
 					gameLog.select(d1.getLength(), d1.getLength());
 				}
-				else
-				{
+				else {
 					((OceanJLabel) OJ[x][y]).setBlowShip(hit);
 					((OceanJLabel) OJ[x][y]).soundExplosion();
 					
-					//logLabel.setText("log: "+"Player: "+" "+update+" "+"Computer: "+" "+computerUpdate);
 					gameRecord = gameRecord +"\n" + "computer hit "+ computerUpdate + " and hit destroyer " + "(0:" +second +")";
 					gameLog.setText(gameRecord);
 					Document d = gameLog.getDocument();
@@ -1471,15 +1281,12 @@ public class BattleShip extends JFrame{
 			Thread th = new Thread() {
 				public void run() {
 					try {
-						//countStop = true;
 						time.cancel();
 						sleep(8000);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					//////////////
-					
 					GameOver go = new GameOver("Computer Won!");
 					go.setVisible(true);
 					go.getOK().addActionListener(new ActionListener() {
@@ -1492,7 +1299,6 @@ public class BattleShip extends JFrame{
 							miss = new ImageIcon("no.png");
 							hit = new ImageIcon("fire.png");
 							question  = new ImageIcon("question.png");
-							//question.setImage("asd.sd");
 							starter = false;
 							Scanner input = new Scanner(System.in);
 
@@ -1520,9 +1326,6 @@ public class BattleShip extends JFrame{
 							computerSaver = new boolean[10][10];
 							BattleShip bs = new BattleShip();
 							bs.setVisible(true);
-							//System.exit(0);
-							
-
 						}
 					});
 					go.getNO().addActionListener(new ActionListener() {
@@ -1565,7 +1368,6 @@ public class BattleShip extends JFrame{
 							
 							BattleShip BS = new BattleShip();
 							
-							
 							BufferedReader in;
 							try {
 								URL toCheckIp = new URL("http://checkip.amazonaws.com");
@@ -1575,30 +1377,17 @@ public class BattleShip extends JFrame{
 								ip = "Error";
 							
 							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								
+								// TODO Auto-generated catch block	
 								e.printStackTrace();
 							}
-							
-							
 							IpMenu im = new IpMenu(BS,ip);
-							
-							//bs.setVisible(true);
-							//System.exit(0);
-							
-
 						}
 					});
 				}
 			};
-			
 			th.start();	
-			
-	
 		}
 		computerFinish = true;
-		//second = 15;
-	    
 	}
 	public static void main(String [] args){
 		//reading textfile
@@ -1635,11 +1424,8 @@ public class BattleShip extends JFrame{
 			FileReader fr = new FileReader("howto.txt");
 			Scanner sc = new Scanner(fr);
 			str = "Welcome to battle ship!" + "\n" + "\n";
-			while(sc.hasNextLine())
-			{
-				//String temp1 = sc.nextLine();
-				str = str + sc.nextLine()+ "\n";
-				
+			while(sc.hasNextLine()) {
+				str = str + sc.nextLine()+ "\n";	
 			}
 			fr.close();
 			sc.close();
@@ -1662,17 +1448,12 @@ public class BattleShip extends JFrame{
 		
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			
 			e.printStackTrace();
 		}
-
 		
 		BS = new BattleShip();
 		im = new IpMenu(BS, ip);
 		im.setVisible(true);
-		
-		//BattleShip BS = new BattleShip();
-		//BS.showToUser();
 		
 	}//end of main static
 	
@@ -1690,12 +1471,9 @@ public class BattleShip extends JFrame{
 		task = new TimerTask(){
 			public void run() {
 
-					if(!countStop)
-					{
-						if(second >= 0)
-						{
-							if(playerFinish == true && computerFinish == true)
-							{
+					if(!countStop) {
+						if(second >= 0) {
+							if(playerFinish == true && computerFinish == true) {
 								second = 15;
 								gameRecord = gameRecord + "\n" + "Round " + roundCounter;
 								gameLog.setText(gameRecord);
@@ -1714,8 +1492,7 @@ public class BattleShip extends JFrame{
 								}
 							}
 							timeRemain.setText("Time - 0:"+second);
-							if(second == 3)
-							{
+							if(second == 3) {
 								gameRecord = gameRecord + "\n" + second +" seconds left in the round";
 								gameLog.setText(gameRecord);
 								Document d1 = gameLog.getDocument();
@@ -1723,8 +1500,7 @@ public class BattleShip extends JFrame{
 							}
 							second--;
 						}
-						else
-						{
+						else {
 							second = 15;
 							gameRecord = gameRecord + "\n" + "Round " + roundCounter;
 							gameLog.setText(gameRecord);
@@ -1736,13 +1512,9 @@ public class BattleShip extends JFrame{
 						
 							Random rg = new Random();
 							computerWait = rg.nextInt(15);
-						}
-						
-						
+						}			
 				}
-				}
-					
-			
+			}
 		};
 		time.schedule(task, 1000,1000);
 	}
@@ -1787,18 +1559,14 @@ public class BattleShip extends JFrame{
 		Vector<Integer> temp1 = new Vector<Integer>();
 		temp1 = ranking(player);
 		
-		for(int i = 0; i < temp1.size(); i++) 
-		{
-			for(int j = 0; j<player.size(); j++) 
-			{
-				if(temp1.get(i) == player.get(j).getScore())
-				{
+		for(int i = 0; i < temp1.size(); i++)  {
+			for(int j = 0; j<player.size(); j++)  {
+				if(temp1.get(i) == player.get(j).getScore()) {
 					temp.add(player.get(j));
 					player.remove(j);
 					break;
 				}
-				else
-				{
+				else {
 					continue;
 				}
 			}
@@ -1823,15 +1591,12 @@ public class BattleShip extends JFrame{
 		boolean second = false;
 		int forChecking = 0;
 		Vector<Integer> storage = new Vector<Integer>();
-		try
-		{
+		try {
 			for(int i = 0; i < 10; i++) {
 				for(int j = 0; j < 10; j++) {
 					counter = 0;
-					if(!checked[i][j])
-					{
-						if(coordi[i][j] == checking)
-						{
+					if(!checked[i][j]) {
+						if(coordi[i][j] == checking) {
 							
 							checked[i][j] = true;
 							counter++;
@@ -1845,123 +1610,85 @@ public class BattleShip extends JFrame{
 				}
 			}		
 		}
-		catch(ArrayIndexOutOfBoundsException e)
-		{
+		catch(ArrayIndexOutOfBoundsException e) {
 			return storage;
 		}
-
 		return storage;
 	}
 
 	public static void BFS(boolean firstOne, boolean secondOne, boolean[][] checked, char[][] coordi, char checking, int i, int j) {
 		int d = 0;
 		//going to right
-		if(firstOne)
-		{
-			if( j!=9 &&coordi[i][j+1] == checking)
-			{//needed to make sure that previous one is from the left.
-				if(checked[i][j])
-				{
-					if(!checked[i][j+1])
-					{
-						if(checking != 'D' || counter != 2)
-						{
-							counter++;
-							checked[i][j+1] = true;
-							firstOne = false;
-							BFS(firstOne, secondOne, checked, coordi, checking, i, j+1);
-						}
-						if(checking == 'D' && counter == 2 && secondOne)
-						{
-							coordi[i][j+1] = 'E'; 
-							coordi[i][j] = 'E'; 
-						}
-
-					}
+		if(firstOne) { 
+			//needed to make sure that previous one is from the left.
+				if( j!=9 &&coordi[i][j+1] == checking) {
+					if(checked[i][j]) {
+						if(!checked[i][j+1]) {
+							if(checking != 'D' || counter != 2) {
+								counter++;
+								checked[i][j+1] = true;
+								firstOne = false;
+								BFS(firstOne, secondOne, checked, coordi, checking, i, j+1);
+							}
+							if(checking == 'D' && counter == 2 && secondOne) {
+								coordi[i][j+1] = 'E'; 
+								coordi[i][j] = 'E'; 
+							}
 	
-				}
-			}
-			else if(i!=9 && coordi[i+1][j] == checking)
-			{
-				if(checked[i][j])
-				{
-					if(!checked[i+1][j])
-					{
-						if(checking != 'D' || counter != 2)
-						{
-							counter++;
-							checked[i+1][j] = true;
-							firstOne = false;
-							BFS(firstOne, secondOne, checked, coordi, checking, i+1, j);	
 						}
-						if(checking == 'D' && counter == 2 && secondOne)
-						{
-							coordi[i+1][j] = 'E'; 
-							coordi[i][j] = 'E'; 
-						}
-
 					}
-
-					
 				}
-					
+				else if(i!=9 && coordi[i+1][j] == checking) {
+					if(checked[i][j]) {
+						if(!checked[i+1][j]) {
+							if(checking != 'D' || counter != 2) {
+								counter++;
+								checked[i+1][j] = true;
+								firstOne = false;
+								BFS(firstOne, secondOne, checked, coordi, checking, i+1, j);	
+							}
+							if(checking == 'D' && counter == 2 && secondOne) {
+								coordi[i+1][j] = 'E'; 
+								coordi[i][j] = 'E'; 
+							}
+						}	
+					}		
+				}
 			}
-
-			}
-			else
-			{
-				if(j!=9 && coordi[i][j+1] == checking)
-				{//needed to make sure that previous one is from the left.
-					if(checked[i][j-1])
-					{
-						if(!checked[i][j+1])
-						{
-							if(checking != 'D' || counter != 2)
-							{
+			else {
+				if(j!=9 && coordi[i][j+1] == checking) {//needed to make sure that previous one is from the left.
+					if(checked[i][j-1]) {
+						if(!checked[i][j+1]) {
+							if(checking != 'D' || counter != 2) {
 								counter++;
 								checked[i][j+1] = true;
 								firstOne = false;
 								BFS(firstOne, secondOne, checked, coordi, checking, i, j+1);	
 							}
-							if(checking == 'D' && counter == 2 && secondOne)
-							{
+							if(checking == 'D' && counter == 2 && secondOne) {
 								coordi[i][j+1] = 'E'; 
 								coordi[i][j] = 'E'; 
 							}
 						}
-	
 					}
-	
 				}
-				else if(i!=9&&coordi[i+1][j] == checking)
-				{
-					if(checked[i-1][j])
-					{
-						if(!checked[i+1][j])
-						{
-							if(checking != 'D' || counter != 2)
-							{
+				else if(i!=9&&coordi[i+1][j] == checking) {
+					if(checked[i-1][j]) {
+						if(!checked[i+1][j]) {
+							if(checking != 'D' || counter != 2) {
 								counter++;
 								checked[i+1][j] = true;
 								firstOne = false;
 								BFS(firstOne, secondOne, checked, coordi, checking, i+1, j);
 							}
-							if(checking == 'D' && counter == 2 && secondOne)
-							{
+							if(checking == 'D' && counter == 2 && secondOne) {
 								coordi[i+1][j] = 'E'; 
 								coordi[i][j] = 'E'; 
 							}
-
 						}
-
-						
 					}
-					
 				}
-
 		}
-		
-		
 	}
 	public static String getAlphabet(int x, int y) {
 	
@@ -1997,24 +1724,18 @@ public class BattleShip extends JFrame{
 		z = "J" + (y+1);
 	}
 	
-
-	
- return z;	
+	return z;	
 }
 
 	public void placeShip(String ship, char direction, int x, int y) {
 	
 	try{
-		if(coordi[x-1][y-1] == 'X')
-		{
-			if(direction == 'N')
-			{
-				switch(ship)
-				{
+		if(coordi[x-1][y-1] == 'X') {
+			if(direction == 'N') {
+				switch(ship) {
 					case "Aircraft Carrier":
 						for(int i = 0; i <5; i++) {
-							if(coordi[x-1-i][y-1] != 'X')
-							{
+							if(coordi[x-1-i][y-1] != 'X') {
 								warning wn = new warning();
 								wn.setVisible(true);
 								return;
@@ -2031,21 +1752,13 @@ public class BattleShip extends JFrame{
 						((OceanJLabel) OJ[x-3][y-1]).setShip(A);
 						((OceanJLabel) OJ[x-4][y-1]).setShip(A);
 						((OceanJLabel) OJ[x-5][y-1]).setShip(A);
-						/*
-						coordinate[x-1][y-1].setIcon(A);
-						coordinate[x-2][y-1].setIcon(A);
-						coordinate[x-3][y-1].setIcon(A);
-						coordinate[x-4][y-1].setIcon(A);
-						coordinate[x-5][y-1].setIcon(A);
-						*/
 						
 						deleteOption("Aircraft Carrier");
 						break;
 						
 					case "Battleship":
 						for(int i = 0; i <4; i++) {
-							if(coordi[x-1-i][y-1] != 'X')
-							{
+							if(coordi[x-1-i][y-1] != 'X') {
 								warning wn = new warning();
 								wn.setVisible(true);
 								return;
@@ -2060,20 +1773,12 @@ public class BattleShip extends JFrame{
 						((OceanJLabel) OJ[x-2][y-1]).setShip(B);
 						((OceanJLabel) OJ[x-3][y-1]).setShip(B);
 						((OceanJLabel) OJ[x-4][y-1]).setShip(B);
-						
-						/*
-						coordinate[x-1][y-1].setIcon(B);
-						coordinate[x-2][y-1].setIcon(B);
-						coordinate[x-3][y-1].setIcon(B);
-						coordinate[x-4][y-1].setIcon(B);
-						*/
-						
+				
 						deleteOption("Battleship");
 						break;
 					case "Cruiser":
 						for(int i = 0; i <3; i++) {
-							if(coordi[x-1-i][y-1] != 'X')
-							{
+							if(coordi[x-1-i][y-1] != 'X') {
 								warning wn = new warning();
 								wn.setVisible(true);
 								return;
@@ -2086,43 +1791,31 @@ public class BattleShip extends JFrame{
 						((OceanJLabel) OJ[x-1][y-1]).setShip(C);
 						((OceanJLabel) OJ[x-2][y-1]).setShip(C);
 						((OceanJLabel) OJ[x-3][y-1]).setShip(C);
-						/*
-						coordinate[x-1][y-1].setIcon(C);
-						coordinate[x-2][y-1].setIcon(C);
-						coordinate[x-3][y-1].setIcon(C);
-						 */
+		
 						deleteOption("Cruiser");
 						break;
 					case "Destroyer":
 						for(int i = 0; i < 2; i++) {
-							if(coordi[x-1-i][y-1] != 'X')
-							{
+							if(coordi[x-1-i][y-1] != 'X') {
 								warning wn = new warning();
 								wn.setVisible(true);
 								return;
 							}
 						}
 
-						if(destroyerD == false)
-						{
+						if(destroyerD == false) {
 							coordi[x-1][y-1] = 'D';
 							coordi[x-2][y-1] = 'D';
 							destroyerD = true;
 						}
-						else
-						{
+						else {
 							coordi[x-1][y-1] = 'E';
 							coordi[x-2][y-1] = 'E';
 						}
 
 						((OceanJLabel) OJ[x-1][y-1]).setShip(D);
 						((OceanJLabel) OJ[x-2][y-1]).setShip(D);
-						
-						/*
-						coordinate[x-1][y-1].setIcon(D);
-						coordinate[x-2][y-1].setIcon(D);
-						*/
-						
+		
 						destroyCounter--;
 						if(destroyCounter == 0){
 							deleteOption("Destroyer");
@@ -2131,14 +1824,11 @@ public class BattleShip extends JFrame{
 						break;
 				}
 			}
-			else if(direction == 'S')
-			{
-				switch(ship)
-				{
+			else if(direction == 'S') {
+				switch(ship) {
 					case "Aircraft Carrier":
 						for(int i = 0; i <5; i++) {
-							if(coordi[x-1+i][y-1] != 'X')
-							{
+							if(coordi[x-1+i][y-1] != 'X') {
 								warning wn = new warning();
 								wn.setVisible(true);
 								return;
@@ -2156,21 +1846,12 @@ public class BattleShip extends JFrame{
 						((OceanJLabel) OJ[x+2][y-1]).setShip(A);
 						((OceanJLabel) OJ[x+3][y-1]).setShip(A);
 						
-						/*
-						coordinate[x-1][y-1].setIcon(A);
-						coordinate[x][y-1].setIcon(A);
-						coordinate[x+1][y-1].setIcon(A);
-						coordinate[x+2][y-1].setIcon(A);
-						coordinate[x+3][y-1].setIcon(A);
-						*/
-						
 						deleteOption("Aircraft Carrier");
 						
 						break;
 					case "Battleship":
 						for(int i = 0; i <4; i++) {
-							if(coordi[x-1+i][y-1] != 'X')
-							{
+							if(coordi[x-1+i][y-1] != 'X') {
 								warning wn = new warning();
 								wn.setVisible(true);
 								return;
@@ -2186,19 +1867,11 @@ public class BattleShip extends JFrame{
 						((OceanJLabel) OJ[x+1][y-1]).setShip(B);
 						((OceanJLabel) OJ[x+2][y-1]).setShip(B);
 						
-						/*
-						coordinate[x-1][y-1].setIcon(B);
-						coordinate[x][y-1].setIcon(B);
-						coordinate[x+1][y-1].setIcon(B);
-						coordinate[x+2][y-1].setIcon(B);
-						 */
-						
 						deleteOption("Battleship");
 						break;
 					case "Cruiser":
 						for(int i = 0; i <3; i++) {
-							if(coordi[x-1+i][y-1] != 'X')
-							{
+							if(coordi[x-1+i][y-1] != 'X') {
 								warning wn = new warning();
 								wn.setVisible(true);
 								return;
@@ -2211,44 +1884,32 @@ public class BattleShip extends JFrame{
 						((OceanJLabel) OJ[x-1][y-1]).setShip(C);
 						((OceanJLabel) OJ[x][y-1]).setShip(C);
 						((OceanJLabel) OJ[x+1][y-1]).setShip(C);
-						
-						/*
-						coordinate[x-1][y-1].setIcon(C);
-						coordinate[x][y-1].setIcon(C);
-						coordinate[x+1][y-1].setIcon(C);
-						*/
+					
 						deleteOption("Cruiser");
 		
 						break;
 					case "Destroyer":
 						for(int i = 0; i <2; i++) {
-							if(coordi[x-1+i][y-1] != 'X')
-							{
+							if(coordi[x-1+i][y-1] != 'X') {
 								warning wn = new warning();
 								wn.setVisible(true);
 								return;
 							}
 						}
 
-						if(destroyerD == false)
-						{
+						if(destroyerD == false) {
 							coordi[x-1][y-1] = 'D';
 							coordi[x][y-1] = 'D';
 							destroyerD = true;
 						}
-						else
-						{
+						else {
 							coordi[x-1][y-1] = 'E';
 							coordi[x][y-1] = 'E';
 						}
 
 						((OceanJLabel) OJ[x-1][y-1]).setShip(D);
 						((OceanJLabel) OJ[x][y-1]).setShip(D);
-						
-						/*
-						coordinate[x-1][y-1].setIcon(D);
-						coordinate[x][y-1].setIcon(D);
-						*/
+				
 						destroyCounter--;
 						if(destroyCounter == 0){
 							deleteOption("Destroyer");
@@ -2256,14 +1917,11 @@ public class BattleShip extends JFrame{
 						break;
 				}
 			}
-			else if(direction == 'E')
-			{
-				switch(ship)
-				{
+			else if(direction == 'E') {
+				switch(ship) {
 					case "Aircraft Carrier":
 						for(int i = 0; i <5; i++) {
-							if(coordi[x-1][y-1+i] != 'X')
-							{
+							if(coordi[x-1][y-1+i] != 'X') {
 								warning wn = new warning();
 								wn.setVisible(true);
 								return;
@@ -2281,19 +1939,11 @@ public class BattleShip extends JFrame{
 						((OceanJLabel) OJ[x-1][y+2]).setShip(A);
 						((OceanJLabel) OJ[x-1][y+3]).setShip(A);
 						
-						/*
-						coordinate[x-1][y-1].setIcon(A);
-						coordinate[x-1][y].setIcon(A);
-						coordinate[x-1][y+1].setIcon(A);
-						coordinate[x-1][y+2].setIcon(A);
-						coordinate[x-1][y+3].setIcon(A);
-						*/
 						deleteOption("Aircraft Carrier");
 						break;
 					case "Battleship":
 						for(int i = 0; i <4; i++) {
-							if(coordi[x-1][y-1+i] != 'X')
-							{
+							if(coordi[x-1][y-1+i] != 'X') {
 								warning wn = new warning();
 								wn.setVisible(true);
 								return;
@@ -2308,18 +1958,12 @@ public class BattleShip extends JFrame{
 						((OceanJLabel) OJ[x-1][y]).setShip(B);
 						((OceanJLabel) OJ[x-1][y+1]).setShip(B);
 						((OceanJLabel) OJ[x-1][y+2]).setShip(B);
-						/*
-						coordinate[x-1][y-1].setIcon(B);
-						coordinate[x-1][y].setIcon(B);
-						coordinate[x-1][y+1].setIcon(B);
-						coordinate[x-1][y+2].setIcon(B);
-						*/
+			
 						deleteOption("Battleship");
 						break;
 					case "Cruiser":
 						for(int i = 0; i <3; i++) {
-							if(coordi[x-1][y-1+i] != 'X')
-							{
+							if(coordi[x-1][y-1+i] != 'X') {
 								warning wn = new warning();
 								wn.setVisible(true);
 								return;
@@ -2332,31 +1976,23 @@ public class BattleShip extends JFrame{
 						((OceanJLabel) OJ[x-1][y-1]).setShip(C);
 						((OceanJLabel) OJ[x-1][y]).setShip(C);
 						((OceanJLabel) OJ[x-1][y+1]).setShip(C);
-						/*
-						coordinate[x-1][y-1].setIcon(C);
-						coordinate[x-1][y].setIcon(C);
-						coordinate[x-1][y+1].setIcon(C);
-						*/
+			
 						deleteOption("Cruiser");
 						break;
 					case "Destroyer":
 						for(int i = 0; i <2; i++) {
-							if(coordi[x-1][y-1+i] != 'X')
-							{
+							if(coordi[x-1][y-1+i] != 'X') {
 								warning wn = new warning();
 								wn.setVisible(true);
 								return;
 							}
 						}
-		
-						if(destroyerD == false)
-						{
+						if(destroyerD == false) {
 							coordi[x-1][y-1] = 'D';
 							coordi[x-1][y] = 'D';
 							destroyerD = true;
 						}
-						else
-						{
+						else {
 							coordi[x-1][y-1] = 'E';
 							coordi[x-1][y] = 'E';
 						}
@@ -2364,10 +2000,6 @@ public class BattleShip extends JFrame{
 						((OceanJLabel) OJ[x-1][y-1]).setShip(D);
 						((OceanJLabel) OJ[x-1][y]).setShip(D);
 						
-						/*
-						coordinate[x-1][y-1].setIcon(D);
-						coordinate[x-1][y].setIcon(D);
-						*/
 						destroyCounter--;
 						if(destroyCounter == 0){
 							deleteOption("Destroyer");
@@ -2375,14 +2007,11 @@ public class BattleShip extends JFrame{
 						break;
 				}
 			}
-			else if(direction == 'W')
-			{
-				switch(ship)
-				{
+			else if(direction == 'W') {
+				switch(ship) {
 					case "Aircraft Carrier":
 						for(int i = 0; i <5; i++) {
-							if(coordi[x-1][y-1-i] != 'X')
-							{
+							if(coordi[x-1][y-1-i] != 'X') {
 								warning wn = new warning();
 								wn.setVisible(true);
 								return;
@@ -2400,21 +2029,12 @@ public class BattleShip extends JFrame{
 						((OceanJLabel) OJ[x-1][y-4]).setShip(A);
 						((OceanJLabel) OJ[x-1][y-5]).setShip(A);
 						
-						/*
-						coordinate[x-1][y-1].setIcon(A);
-						coordinate[x-1][y-2].setIcon(A);
-						coordinate[x-1][y-3].setIcon(A);
-						coordinate[x-1][y-4].setIcon(A);
-						coordinate[x-1][y-5].setIcon(A);
-						*/
-						
 						deleteOption("Aircraft Carrier");
 						
 						break;
 					case "Battleship":
 						for(int i = 0; i <4; i++) {
-							if(coordi[x-1][y-1-i] != 'X')
-							{
+							if(coordi[x-1][y-1-i] != 'X') {
 								warning wn = new warning();
 								wn.setVisible(true);
 								return;
@@ -2429,18 +2049,12 @@ public class BattleShip extends JFrame{
 						((OceanJLabel) OJ[x-1][y-2]).setShip(B);
 						((OceanJLabel) OJ[x-1][y-3]).setShip(B);
 						((OceanJLabel) OJ[x-1][y-4]).setShip(B);
-						/*
-						coordinate[x-1][y-1].setIcon(B);
-						coordinate[x-1][y-2].setIcon(B);
-						coordinate[x-1][y-3].setIcon(B);
-						coordinate[x-1][y-4].setIcon(B);
-						*/
+						
 						deleteOption("Battleship");
 						break;
 					case "Cruiser":
 						for(int i = 0; i <3; i++) {
-							if(coordi[x-1][y-1-i] != 'X')
-							{
+							if(coordi[x-1][y-1-i] != 'X') {
 								warning wn = new warning();
 								wn.setVisible(true);
 								return;
@@ -2450,48 +2064,33 @@ public class BattleShip extends JFrame{
 						coordi[x-1][y-2] = 'C';
 						coordi[x-1][y-3] = 'C';
 
-						
 						((OceanJLabel) OJ[x-1][y-1]).setShip(C);
 						((OceanJLabel) OJ[x-1][y-2]).setShip(C);
 						((OceanJLabel) OJ[x-1][y-3]).setShip(C);
-						
-						/*
-						coordinate[x-1][y-1].setIcon(C);
-						coordinate[x-1][y-2].setIcon(C);
-						coordinate[x-1][y-3].setIcon(C);
-						*/
 						
 						deleteOption("Cruiser");
 						break;
 					case "Destroyer":
 						for(int i = 0; i <2; i++) {
-							if(coordi[x-1][y-1-i] != 'X')
-							{
+							if(coordi[x-1][y-1-i] != 'X') {
 								warning wn = new warning();
 								wn.setVisible(true);
 								return;
 							}
 						}
-						if(destroyerD == false)
-						{
+						if(destroyerD == false) {
 							coordi[x-1][y-1] = 'D';
 							coordi[x-1][y-2] = 'D';
 							destroyerD = true;
 						}
-						else
-						{
+						else {
 							coordi[x-1][y-1] = 'E';
 							coordi[x-1][y-2] = 'E';
 						}
 
 						((OceanJLabel) OJ[x-1][y-1]).setShip(D);
 						((OceanJLabel) OJ[x-1][y-2]).setShip(D);
-						
-						/*
-						coordinate[x-1][y-1].setIcon(D);
-						coordinate[x-1][y-2].setIcon(D);
-						 */
-						
+					
 						destroyCounter--;
 						if(destroyCounter == 0){
 							deleteOption("Destroyer");
@@ -2500,16 +2099,12 @@ public class BattleShip extends JFrame{
 				}
 			}
 		}//if
-		else
-		{
+		else {
 			reset(x-1,y-1);
 				
-		}
-		
-		
+		}	
 	}
-	catch(ArrayIndexOutOfBoundsException e)
-	{
+	catch(ArrayIndexOutOfBoundsException e) {
 		warning wn = new warning();
 		wn.setVisible(true);
 		if(ship.equalsIgnoreCase("Aircraft Carrier")) {
@@ -2557,100 +2152,45 @@ public class BattleShip extends JFrame{
 		{
 			shipList.remove(i);
 		}
+	 }
 	}
-}
-	public void shipAdd(String ship)
-	{
+	public void shipAdd(String ship) {
 		shipList.add(ship);
 	}
 	
 	public static void computerCoordi(char[][] coordiC) {
-	//inialize computer coordi
-	/*
-	coordiC = new char[10][10];
-	for(int i = 0; i < 10; i++) {
-		for(int j = 0; j < 10; j++) {
-			coordiC[i][j] = 'X';
-		}
-	}
 	
-	try{
-		FileReader fr = new FileReader(filePath);
-		BufferedReader br = new BufferedReader(fr);
-
-		//making char 2D array size of 10
-			
-		for(int i = 0; i < 10; i++) {
-			String str = br.readLine();
-			for(int j = 0; j < 10; j++) {
-				
-				coordiC[i][j] = str.charAt(j);
-				if(coordiC[i][j] == 'A'||coordiC[i][j] == 'B'||coordiC[i][j] == 'C'||coordiC[i][j] == 'D'||coordiC[i][j] == 'X')
-				{
-					continue;
-				}
-				else
-				{
-					System.out.println("Your format of textfile is wrong. Please Correct your file.");
-					System.exit(0);
-				}
-			}
-		}
-		br.close();
-		fr.close();
-	} catch (FileNotFoundException fnfe) {
-		System.out.println("No file! check it again!");
-		System.exit(0);
-	} catch (IOException ioe) {
-		System.out.println("Error occurs! try again.");
-		System.exit(0);
-	}
-	//end of reading text file.
-
-	*/
-	// coordinate error checking
-	
-	if(fileChecking(coordiC, 'A').size() != 1)
-	{
+	if(fileChecking(coordiC, 'A').size() != 1) {
 		System.out.println("Your file is incorrect format. Check it again");
 		System.exit(0);
 	}
-	else if(fileChecking(coordiC, 'A').get(0) != 5)
-	{
+	else if(fileChecking(coordiC, 'A').get(0) != 5) {
 		System.out.println("Your file is incorrect format. Check it again");
 		System.exit(0);
 	}
-	
-	if(fileChecking(coordiC, 'B').size() != 1)
-	{
+	if(fileChecking(coordiC, 'B').size() != 1) {
 		System.out.println("Your file is incorrect format. Check it again");
 		System.exit(0);
 	}
-	else if(fileChecking(coordiC, 'B').get(0) != 4)
-	{
+	else if(fileChecking(coordiC, 'B').get(0) != 4) {
 		System.out.println("Your file is incorrect format. Check it again");
 		System.exit(0);
 	}
-	
-	if(fileChecking(coordiC, 'C').size() != 1)
-	{
+	if(fileChecking(coordiC, 'C').size() != 1) {
 		System.out.println("Your file is incorrect format. Check it again");
 		System.exit(0);
 	}
-	else if(fileChecking(coordiC, 'C').get(0) != 3)
-	{
+	else if(fileChecking(coordiC, 'C').get(0) != 3) {
 		System.out.println("Your file is incorrect format. Check it again");
 		System.exit(0);
 	}
 	Vector<Integer> errorchecking = fileChecking(coordiC, 'D');
 
-	if(errorchecking.size() != 2)
-	{
+	if(errorchecking.size() != 2) {
 		System.out.println("Your file is incorrect format. Check it again");
 		System.exit(0);
 	}
-	if(errorchecking.get(0) != 2 || errorchecking.get(1) != 2)
-	{
+	if(errorchecking.get(0) != 2 || errorchecking.get(1) != 2) {
 		System.out.println("Your file is incorrect format. Check it again");
 		System.exit(0);
 	}
@@ -2676,9 +2216,6 @@ public class BattleShip extends JFrame{
 				}
 			};
 			td.start();
-			
-			
-			
 		} else if(!hostLogin) {
 			Thread td = new Thread(){
 				public void run() {
@@ -2721,10 +2258,8 @@ public class BattleShip extends JFrame{
 				timeCounter--;
 			}
 		};
-		time.schedule(task, 1000, 1000);
-		
+		time.schedule(task, 1000, 1000);	
 	}
-	
 	public void stopServer() {
 		try {
 			s.close();
@@ -2739,25 +2274,17 @@ public class BattleShip extends JFrame{
 	{
 		JLabel jl;
 		int remaining;
-		public TimeSetting(JLabel jl, int remaining)
-		{
+		public TimeSetting(JLabel jl, int remaining) {
 			this.jl = jl;
 			this.remaining = remaining;
 		}
-		public void run()
-		{
+		public void run() {
 	
-			while(true)
-			{
-				
+			while(true) {
 				jl.setText("Time - 0:"+ remaining);
-	
 			}
 		}
-		
 	}
-	
-
 	public void sendMessageToClients(ServerThread ct, String str) {
 		System.out.println("asdasd");
 		System.out.println("inside : "+str);
@@ -2897,7 +2424,6 @@ public class BattleShip extends JFrame{
 					}else if(command.equals("start")) {
 						String content = tok.nextToken();
 						oReady = "B";
-						//pReady = "B";
 					}
 					
 				}
@@ -3041,7 +2567,6 @@ public class BattleShip extends JFrame{
 					}else if(command.equals("start")) {
 						String content = tok.nextToken();
 						oReady = "B";
-						//pReady = "B";
 					}
 				}
 			} catch (IOException | ClassNotFoundException ioe) {
@@ -3199,11 +2724,9 @@ public class BattleShip extends JFrame{
 		{
 			if(computerSaver[x][y] == false)
 			{
-				//coordinate[x][y].setIcon(miss);
 				((OceanJLabel) OJ[x][y]).missShip(miss);
 				((OceanJLabel) OJ[x][y]).soundSplash(false);
 				computerSaver[x][y] = true;
-				//logLabel.setText("log: "+"Player: "+" "+update+" "+"Computer: "+" "+computerUpdate);
 				gameRecord = gameRecord +"\n" + otherPlayer+ " hit " + computerUpdate + " and missed " + "(0:" +second +")";
 				gameLog.setText(gameRecord);
 				Document d = gameLog.getDocument();
@@ -3241,12 +2764,9 @@ public class BattleShip extends JFrame{
 				}
 				else
 				{
-					//coordinate[x][y].setIcon(hit);
 					((OceanJLabel) OJ[x][y]).setBlowShip(hit);
 					((OceanJLabel) OJ[x][y]).soundExplosion();
 					
-					
-					//logLabel.setText("log: "+"Player: "+" "+update+" "+"Computer: "+" "+computerUpdate);
 					gameRecord = gameRecord +"\n" + otherPlayer+ " hit " + computerUpdate + " and hit aircraft " + "(0:" +second +")";
 					gameLog.setText(gameRecord);
 					Document d = gameLog.getDocument();
@@ -3259,7 +2779,6 @@ public class BattleShip extends JFrame{
 		{
 			if(computerSaver[x][y] == false)
 			{
-				//coordinate[x][y].setIcon(hit);
 				CountbattlshipC--;
 				computerSaver[x][y] = true;
 				if(CountbattlshipC == 0)
@@ -3288,7 +2807,6 @@ public class BattleShip extends JFrame{
 					((OceanJLabel) OJ[x][y]).setBlowShip(hit);
 					((OceanJLabel) OJ[x][y]).soundExplosion();
 					
-					//logLabel.setText("log: "+"Player: "+" "+update+" "+"Computer: "+" "+computerUpdate);
 					gameRecord = gameRecord +"\n" + otherPlayer+ " hit " + computerUpdate + " and hit battleship " + "(0:" +second +")";
 					gameLog.setText(gameRecord);
 					Document d = gameLog.getDocument();
@@ -3301,7 +2819,6 @@ public class BattleShip extends JFrame{
 		{
 			if(computerSaver[x][y] == false)
 			{
-				//coordinate[x][y].setIcon(hit);
 				CountcruiserC--;
 				computerSaver[x][y] = true;
 				if(CountcruiserC == 0)
@@ -3330,7 +2847,6 @@ public class BattleShip extends JFrame{
 					((OceanJLabel) OJ[x][y]).setBlowShip(hit);
 					((OceanJLabel) OJ[x][y]).soundExplosion();
 					
-					//logLabel.setText("log: "+"Player: "+" "+update+" "+"Computer: "+" "+computerUpdate);
 					gameRecord = gameRecord +"\n" + otherPlayer+ " hit " + computerUpdate + " and hit cruiser " + "(0:" +second +")";
 					gameLog.setText(gameRecord);
 					Document d = gameLog.getDocument();
@@ -3343,7 +2859,6 @@ public class BattleShip extends JFrame{
 		{
 			if(computerSaver[x][y] == false)
 			{
-				//coordinate[x][y].setIcon(hit);
 				CountdestroyerC--;
 				computerSaver[x][y] = true;
 				if(CountdestroyerC == 0)
@@ -3372,7 +2887,6 @@ public class BattleShip extends JFrame{
 					((OceanJLabel) OJ[x][y]).setBlowShip(hit);
 					((OceanJLabel) OJ[x][y]).soundExplosion();
 					
-					//logLabel.setText("log: "+"Player: "+" "+update+" "+"Computer: "+" "+computerUpdate);
 					gameRecord = gameRecord +"\n" + otherPlayer+ " hit "+ computerUpdate + " and hit destroyer " + "(0:" +second +")";
 					gameLog.setText(gameRecord);
 					Document d = gameLog.getDocument();
@@ -3385,7 +2899,6 @@ public class BattleShip extends JFrame{
 		{
 			if(computerSaver[x][y] == false)
 			{
-				//coordinate[x][y].setIcon(hit);
 				CountdestroyerC1--;
 				computerSaver[x][y] = true;
 				if(CountdestroyerC1 == 0)
@@ -3414,7 +2927,6 @@ public class BattleShip extends JFrame{
 					((OceanJLabel) OJ[x][y]).setBlowShip(hit);
 					((OceanJLabel) OJ[x][y]).soundExplosion();
 					
-					//logLabel.setText("log: "+"Player: "+" "+update+" "+"Computer: "+" "+computerUpdate);
 					gameRecord = gameRecord +"\n" + otherPlayer+ " hit "+ computerUpdate + " and hit destroyer " + "(0:" +second +")";
 					gameLog.setText(gameRecord);
 					Document d = gameLog.getDocument();
